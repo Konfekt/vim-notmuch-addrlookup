@@ -1,0 +1,66 @@
+          vim-notmuch              *notmuch* *notmuch-addrlookup*
+
+===========================================================================
+0. Usage ~
+
+This plug-in lets you complete e-mail addresses in Vim by those found in your
+inbox (or any other mail folder) via
+https://github.com/pbrisbin/notmuch-addrlookup .
+Useful, for example, when using Vim as editor for mutt (especially with
+$edit_headers set).
+
+When you're editing a mail file in Vim that reads
+>
+    From: Fulano <Fulano@Silva.com>
+    To:   foo
+<
+and in your Inbox there is an e-mail from
+>
+    Mister Foo <foo@bar.com>
+<
+and your cursor is right after foo, then hit Ctrl+X Ctrl+O to obtain:
+>
+    From: Fulano <Fulano@Silva.com>
+    To:   Mister Foo <foo@bar.com>
+<
+
+===========================================================================
+1. Commands ~
+
+To complete e-mail addresses inside Vim press CTRL-X CTRL-O in insert
+mode. See |i_CTRL-X_CTRL-O| and |compl-omni|.
+
+===========================================================================
+2. Setup ~
+
+1. Download and install (by make && sudo cp notmuch-addrlookup /usr/local/bin)
+   notmuch-addrlookup from https://github.com/aperezdc/notmuch-addrlookup-c.
+   If you are missing superuser rights, then compile it (by make) and add the
+   path of the folder that contains the obtained executable notmuch-addrlookup
+   to your environment variable $PATH:
+   If you use bash or zsh, by adding to ~/.profile or ~/.zshenv the line
+>
+    PATH=$PATH:~/bin
+<
+2. If you like to filter out most probably impersonal e-mail addresses
+   such as those coming from mailer daemons or accepting no reply, try
+>
+    let g:notmuch_filter = 1
+<
+   The regular expression which these addresses are checked against can be
+   customized by the variable g:notmuch_filter_regex.
+
+===========================================================================
+3. Related Plug-in ~
+
+The plugin https://github.com/Konfekt/vim-mailquery lets you complete e-mail
+addresses in Vim by those in your Inbox (or any other mail folder).
+
+The plugin https://github.com/Konfekt/vim-mutt-aliases lets you
+complete e-mail addresses in Vim by those in your mutt aliases file,
+and (when the alias file is periodically populated by the
+mutt-alias.sh shell script from https://github.com/Konfekt/mutt-alias.sh)
+gives a more static alternative to this plug-in.
+
+vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl
+
