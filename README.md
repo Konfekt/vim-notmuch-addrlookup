@@ -32,6 +32,9 @@ mode. See `:help i_CTRL-X_CTRL-O` and `:help compl-omni`.
     ```sh
         PATH=$PATH:~/bin
     ```
+
+   If the executable `notmuch-addrlookup` is unavailable, but `notmuch` is, then `notmuch address` will be used instead;
+   whose results are however less pertinent.
     
 2. If you like to filter out most probably impersonal e-mail addresses such as those that come from mailer daemons or accept no reply, then try adding
 
@@ -47,6 +50,7 @@ mode. See `:help i_CTRL-X_CTRL-O` and `:help compl-omni`.
 
 # Related Plug-ins
 
+- The plug-ins [vim-notmuch-address](https://github.com/adborden/vim-notmuch-address) and [vim-notmuch-addresses](https://github.com/mikejsavage/vim-notmuch-addresses) achieve the same, but use `notmuch address` exclusively.
 - The plugin [vim-mailquery](https://github.com/Konfekt/vim-mailquery) lets you complete e-mail addresses in Vim by those in your Inbox (or any other mail folder).
 - The [vim-mutt-aliases](https://github.com/Konfekt/vim-mutt-aliases) plug-in lets you complete e-mail addresses in Vim by those in your `mutt` alias file and (when the alias file is periodically populated by the [mutt-alias.sh](https://github.com/Konfekt/mutt-alias.sh) shell script) gives a more static alternative to this plug-in.
 

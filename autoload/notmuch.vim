@@ -9,13 +9,15 @@ function! notmuch#SetupNotmuch() abort
     endif
   endif
 
-  if !exists('s:notmuch_executable') 
+  if !exists('s:notmuch_command') 
     if executable('notmuch-addrlookup')
-      let s:notmuch_executable = 1
+      let s:notmuch_command = 'notmuch-addrlookup'
+    elseif executable('notmuch')
+      let s:notmuch_command = 'notmuch address'
     else
-      echoerr 'No executable notmuch-addrlookup found.'
-      echoerr 'Please install notmuch-addrlookup from https://github.com/aperezdc/notmuch-addrlookup-c!'
-      let s:notmuch_executable = 0
+      echoerr 'Neither notmuch-addrlookup nor notmuch was found executable.'
+      echoerr 'Please install notmuch-addrlookup from https://github.com/aperezdc/notmuch-addrlookup-c or notmuch from https://notmuchmail.org!'
+      let s:notmuch_command = ''
     endif
   endif
 endfunction
@@ -31,8 +33,8 @@ function! notmuch#complete(findstart, base) abort
     return start
   else
     let results = []
-    if s:notmuch_executable
-      silent let lines = split(system("notmuch-addrlookup " . " '" . a:base . "'"), '\n')
+    if !empty(s:notmuch_command)
+      silent let lines = split(system(s:notmuch_command . " '" . a:base . "'"), '\n')
     endif
 
     if empty(lines)
