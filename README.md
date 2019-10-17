@@ -46,6 +46,7 @@ mode. See `:help i_CTRL-X_CTRL-O` and `:help compl-omni`.
 
     ```vim
     let g:notmuch_filter_regex = '\v^[[:alnum:]._%+-]*%([0-9]{9,}|([0-9]+[a-z]+){3,}|\+|not?([-_.])?reply|<(un)?subscribe>|<mailer\-daemon>)[[:alnum:]._%+-]*\@'
+  filter_regexp="^alias ([[:alnum:]._%+-]*([0-9]{9,}|([0-9]+[a-z]+){3,}|\+|nicht-?antworten|ne-?pas-?repondre|not?([-_.])?reply|\b(un)?subscribe\b|\bMAILER\-DAEMON\b)[[:alnum:]._%+-]*\@([[:alnum:]-]+\.)+[[:alpha:]]{2,}) \1 # mutt-alias: e-mail sent on [[:digit:]]+"
     ```
 
 # Related Plug-ins
