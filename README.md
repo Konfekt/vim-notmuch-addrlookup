@@ -23,9 +23,10 @@ and your cursor is right after `foo`, then hit `Ctrl+X Ctrl+O` to obtain:
 To complete an e-mail address inside Vim press `CTRL-X CTRL-O` in insert
 mode. See `:help i_CTRL-X_CTRL-O` and `:help compl-omni`.
 
-# Setup
+# Installation
 
-1. Download and install (by `make && sudo cp notmuch-addrlookup /usr/local/bin`) [notmuch-addrlookup](https://github.com/aperezdc/notmuch-addrlookup-c).
+1. Copy the folders of this repository into your Vim runtime path (`~/.vim` on Linux and macOS), and
+2. download and install (by `make && sudo cp notmuch-addrlookup /usr/local/bin`) [notmuch-addrlookup](https://github.com/aperezdc/notmuch-addrlookup-c).
     If you are missing superuser rights, then compile it (by `make`) and add the path of the folder that contains the obtained executable `notmuch-addrlookup` (say `~/bin`) to your environment variable `$PATH`:
     If you use `bash` or `zsh`, by adding to `~/.profile` or `~/.zshenv` the line
 
@@ -35,8 +36,19 @@ mode. See `:help i_CTRL-X_CTRL-O` and `:help compl-omni`.
 
    If the executable `notmuch-addrlookup` is unavailable, but `notmuch` is, then `notmuch address` will be used instead;
    whose results are however less pertinent.
+
+If you use [vim-plug](https://github.com/junegunn/vim-plug), then both steps can be achieved at once by pasting the following code snippet into your `vimrc` (between `call plug#begin()` and `call plug#end()`):
+
+```vim
+Plug 'Konfekt/vim-notmuch-addrlookup'
+
+if !executable('notmuch-addrlookup')
+  Plug 'aperezdc/notmuch-addrlookup-c', { 'do': 'make' }
+  let $PATH .= expand(':~/.vim/plugged/notmuch-addrlookup-c')
+endif
+```
     
-2. If you like to filter out most probably impersonal e-mail addresses such as those that come from mailer daemons or accept no reply, then try adding
+3. If you like to filter out most probably impersonal e-mail addresses such as those that come from mailer daemons or accept no reply, then try adding
 
     ```vim
     let g:notmuch_filter = 1
