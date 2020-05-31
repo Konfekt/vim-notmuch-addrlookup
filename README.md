@@ -48,7 +48,11 @@ if !executable('notmuch-addrlookup')
 endif
 ```
     
-3. If you like to filter out most probably impersonal e-mail addresses such as those that come from mailer daemons or accept no reply, then try adding
+3. Completion is enabled in all mail buffers by default.
+Add additional file types to the list `g:notmuch_filetypes` which defaults to `[ 'mail' ]`.
+To enable completion in other buffers, run `:NotmuchCompletion`.
+
+4. If you like to filter out most probably impersonal e-mail addresses such as those that come from mailer daemons or accept no reply, then try adding
 
     ```vim
     let g:notmuch_filter = 1
